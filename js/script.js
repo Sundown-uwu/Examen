@@ -6,6 +6,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const taskPriorityInput = document.getElementById('prioridad');
     const taskList = document.getElementById('lista');
 
+    let tasks = JSON.parse(localStorage.getItem('tarea')) || [];
+
     function saveTasks() {
         localStorage.setItem('tasks', JSON.stringify(tasks));
     }
