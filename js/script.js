@@ -1,15 +1,15 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    const taskForm = document.getElementById('tarea');
-    const taskTitleInput = document.getElementById('nomTarea');
-    const taskDateInput = document.getElementById('fecha');
-    const taskPriorityInput = document.getElementById('prioridad');
-    const taskList = document.getElementById('lista');
+    const tarea = document.getElementById('tarea');
+    const tareaTitle = document.getElementById('nomTarea');
+    const fechaTarea = document.getElementById('fecha');
+    const prioridadTarea = document.getElementById('prioridad');
+    const listaTarea = document.getElementById('lista');
 
-    let tasks = JSON.parse(localStorage.getItem('tarea')) || [];
+    let tareas = JSON.parse(localStorage.getItem('tarea')) || [];
 
-    function saveTasks() {
-        localStorage.setItem('tasks', JSON.stringify(tasks));
+    function guardarTareas() {
+        localStorage.setItem('tareas', JSON.stringify(tareas));
     }
 
     function renderTask(task) {
@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () => {
         li.dataset.id = task.id; 
         li.className = `priority-${task.priority}`; 
 
-        if (task.completed) {
+        if (tarea.completada) {
             li.classList.add('completed');
         }
 
@@ -29,30 +29,30 @@ document.addEventListener('DOMContentLoaded', () => {
         completeButton.className = 'complete-btn';
         
         completeButton.addEventListener('click', () => {
-            task.completed = !task.completed;
-            saveTasks(); 
-            renderAllTasks(); 
+            tarea.completada = !tarea.completada;
+            guardarTareas(); 
+            mostrar(); 
         });
 
         li.appendChild(taskInfo);
         li.appendChild(completeButton);
 
-        taskList.appendChild(li);
+        listaTarea.appendChild(li);
     }
 
-    function renderAllTasks() {
-        taskList.innerHTML = '';
-        tasks.forEach(task => renderTask(task));
+    function mostrar() {
+        listaTarea.innerHTML = '';
+        tareas.forEach(task => renderTask(task));
     }
 
-    taskForm.addEventListener('submit', (e) => {
+    tarea.addEventListener('submit', (e) => {
         e.preventDefault(); 
 
-        const title = taskTitleInput.value;
-        const date = taskDateInput.value;
-        const priority = taskPriorityInput.value;
+        const title = tareaTitle.value;
+        const date = fechaTarea.value;
+        const priority = prioridadTarea.value;
 
-        const newTask = {
+        const nuevaTarea = {
             id: Date.now(), 
             title: title,
             date: date,
@@ -60,14 +60,14 @@ document.addEventListener('DOMContentLoaded', () => {
             completed: false
         };
 
-        tasks.push(newTask);
+        tareas.push(nuevaTarea);
         
-        saveTasks();
-        renderAllTasks();
+        guardarTareas();
+        mostrar();
 
-        taskForm.reset();
+        tarea.reset();
         
 
     });
-    renderAllTasks();
+    mostrar();
 });
