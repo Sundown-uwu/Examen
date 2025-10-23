@@ -1,16 +1,46 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Examen: </title>
+    <title>Tareas</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <h1>Title:</h1>
-    <p>
-        <label>Tarea: </label>
-        <input type="text" id="nombre">
-        <button>Agregar</button>  
-    </p>
+
+    <header>
+        <h1>Mi Gestor de Tareas</h1>
+    </header>
+
+    <main>
+        <form id="tarea">
+            <label for="nomTarea">Tarea:</label>
+            <input type="text" id="nomTarea" placeholder="¿Qué necesitas hacer?" required>
+            
+            <label for="fecha">Fecha:</label>
+            <input type="date" id="fecha" required>
+
+            <label for="prioridad">Prioridad:</label>
+            <select id="prioridad">
+                <option value="baja">Baja</option>
+                <option value="media">Media</option>
+                <option value="alta">Alta</option>
+            </select>
+
+            <button type="submit">Añadir</button>
+        </form>
+
+        <section id="task-list-container">
+            <h2>Mis Tareas</h2>
+            <ul id="lista">
+                </ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>Todos los derechos reservados Diego Pro</p>
+    </footer>
+
+    <script src="js/script.js"></script>
 </body>
 </html>
